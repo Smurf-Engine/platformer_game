@@ -4,7 +4,12 @@ for(let i = 0; i <= 10; i++){
 }
 
 export default class AssetManager{
-    static getSheets(){
+    static get getSprites(){
+        return {
+            background : "/background/background.png",
+        };
+    }
+    static get getSheets(){
         return {
             player : {
                 idle : playerIdleAnimationSheets,
