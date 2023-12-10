@@ -14,7 +14,7 @@ function grassBuilder(x  : number, y : number) : GameObject {
     let spriteSheetRenderer = grass.addComponent(SpriteRenderer);
     spriteSheetRenderer.constructSpriteFromSource(AssetManager.getSprites.environment.spring.grass);
 
-    grass.addComponent(BoxCollider);
+    grass.addComponent(BoxCollider).drawBounds = true;
 
     return grass;
 }
