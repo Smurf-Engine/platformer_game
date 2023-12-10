@@ -1,4 +1,4 @@
-import { GameObject, Physics2D, SpriteRenderer, SpriteSheetAnimator, Vector2 } from "smurf-engine";
+import { BoxCollider, GameObject, Physics2D, SpriteRenderer, SpriteSheetAnimator, Vector2 } from "smurf-engine";
 import { engine } from "../../../setup";
 import AssetManager from "../../../assets/asset_manager";
 
@@ -11,6 +11,7 @@ Player.transform.position = new Vector2(100, 100);
 Player.transform.size = new Vector2(100, 100);
 
 Player.addComponent(SpriteRenderer).constructSpriteFromSource(AssetManager.getSheets.player.idle[0]);
+Player.addComponent(BoxCollider);
 let animator = Player.addComponent(SpriteSheetAnimator);
 animator.sprites = AssetManager.getSheets.player.idle;
 animator.pauseDurationInSeconds = 2;

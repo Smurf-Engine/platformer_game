@@ -7,6 +7,11 @@ export default class AssetManager{
     static get getSprites(){
         return {
             background : "/background/background.png",
+            environment : {
+                spring : {
+                    grass : "/environment/spring/grass.png",
+                },
+            }
         };
     }
     static get getSheets(){
