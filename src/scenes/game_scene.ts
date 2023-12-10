@@ -5,7 +5,7 @@ import { Player } from "./game_scene/game_objects/player";
 import background from "./game_scene/game_objects/background";
 import ground from "./game_scene/game_objects/grass_block";
 
-engine.assetPipeline.addToLoad(...AssetManager.getSheets.player.idle, AssetManager.getSprites.background, AssetManager.getSprites.environment.spring.grass);
+engine.assetPipeline.addToLoad(...AssetManager.getSheets.player.idle, ...AssetManager.getSheets.player.idle_left, AssetManager.getSprites.background, AssetManager.getSprites.environment.spring.grass);
 
 const GAME_SCENE = new Scene();
 const cameraObject = new GameObject({
