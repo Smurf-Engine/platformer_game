@@ -7,8 +7,8 @@ const background = new GameObject({
     engine,
 });
 
-background.transform.position = new Vector2(0, 0);
-background.transform.size = new Vector2(engine.canvas.width, engine.canvas.height);
+background.transform.position = new Vector2(0, -100);
+background.transform.size = new Vector2(engine.canvas.width, engine.canvas.height+101);
 
 let spriteSheetRenderer = background.addComponent(SpriteRenderer);
 spriteSheetRenderer.constructSpriteFromSource(AssetManager.getSprites.background);

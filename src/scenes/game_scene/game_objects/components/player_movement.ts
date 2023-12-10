@@ -9,8 +9,6 @@ export default class PlayerMovement extends Component{
     start(){
         this.physics = this.gameObject.getComponent(Physics2D)!;
         this.spriteSheetAnimator = this.gameObject.getComponent(SpriteSheetAnimator)!;
-        console.log(this.spriteSheetAnimator);
-        console.log(SpriteSheetAnimator);
     }
 
     update(): void {
