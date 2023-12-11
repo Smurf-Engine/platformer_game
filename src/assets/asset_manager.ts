@@ -5,6 +5,16 @@ for(let i = 0; i <= 10; i++){
     playerIdleAnimationSheetsLeft.push(`/player/idle/${i}_left.png`);
 }
 
+const waterAnimationSheets : string[] = [];
+for(let i = 1; i <= 17; i++){
+    waterAnimationSheets.push(`/water/image ${i}.png`);
+}
+
+const coinAnimationSheets : string[] = [];
+for(let i = 1; i <= 16; i++){
+    coinAnimationSheets.push(`/coin/image ${i}.png`);
+}
+
 export default class AssetManager{
     static get getSprites(){
         return {
@@ -29,7 +39,9 @@ export default class AssetManager{
             player : {
                 idle : playerIdleAnimationSheets,
                 idle_left : playerIdleAnimationSheetsLeft,
-            }
+            },
+            water : waterAnimationSheets,
+            coin : coinAnimationSheets,
         };
     }
 }
