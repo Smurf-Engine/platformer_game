@@ -1,4 +1,4 @@
-import { BoxCollider, Component, GameObject, SpriteRenderer, SpriteSheetAnimator, Vector2 } from "smurf-engine";
+import { BoxCollider, GameObject, SpriteRenderer, SpriteSheetAnimator, Vector2 } from "smurf-engine";
 import AssetManager from "../../../assets/asset_manager";
 import { engine } from "../../../setup";
 import { MovingPlatform } from "./components/moving_platform";

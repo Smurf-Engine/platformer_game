@@ -46,7 +46,7 @@ export class MovingPlatform extends Component{
         this.touchingGameObject = other;
     }
 
-    onCollisionExit(other: GameObject): void {
+    onCollisionExit(): void {
         this.touchingGameObject = undefined;
     }
 }

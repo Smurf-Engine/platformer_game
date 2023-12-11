@@ -1,4 +1,5 @@
 import { Component, GameObject, Physics2D, Vector2 } from "smurf-engine";
+import { MovingPlatform } from "./moving_platform";
 
 export class PlayerCameraFollower extends Component {
     box = {
@@ -10,9 +11,11 @@ export class PlayerCameraFollower extends Component {
     showBoxBounds = false;
     rightFlag = 0;
     physics!: Physics2D;
+    movingPlatform?: MovingPlatform;
 
     start(): void {
         this.physics = this.gameObject.getComponent(Physics2D)!;
+        this.physics.gravity = .2;
         this.rightFlag = this.engine.canvas.width;
     }
 
@@ -29,10 +32,14 @@ export class PlayerCameraFollower extends Component {
         }
 
         if (this.shouldPanCameraLeft()) {
-            this.cx.translate(-this.physics.velocity.x, 0);
-            this.rightFlag += Math.abs(this.physics.velocity.x);
+            let translateX = Number(this.physics.velocity.x);
+            if (this.movingPlatform !== undefined) {
+                translateX = this.movingPlatform.speed;
+            }
+            this.cx.translate(-translateX, 0);
+            this.rightFlag += Math.abs(translateX);
             this.backgrounds.forEach((background) => {
-                background.transform.position.x += Math.abs(this.physics.velocity.x * .35);
+                background.transform.position.x += Math.abs(translateX * .35);
             });
         }
     }
@@ -45,5 +52,13 @@ export class PlayerCameraFollower extends Component {
     shouldPanCameraLeft(): boolean {
         const rightSide = this.box.position.x + this.box.width;
         return rightSide > this.rightFlag;
+    }
+
+    onCollisionEnter(other: GameObject): void {
+        other.hasComponent(MovingPlatform) && (this.movingPlatform = other.getComponent(MovingPlatform));
+    }
+
+    onCollisionExit(other?: GameObject | undefined): void {
+        other?.hasComponent(MovingPlatform) && (this.movingPlatform = undefined);
     }
 }

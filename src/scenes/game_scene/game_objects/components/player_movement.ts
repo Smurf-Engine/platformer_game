@@ -16,14 +16,14 @@ export default class PlayerMovement extends Component{
     update(): void {
         // vertical movement
         if(this.engine.input.isPressed("ArrowUp") || this.engine.input.isPressed("Space")){
-            this.physics.velocity.y = -5;
+            this.physics.velocity.y = -7;
         }
         // horizontal movement
         if(this.engine.input.isPressed("ArrowLeft") || this.engine.input.isPressed("KeyA")){
-            this.physics.velocity.x = -5;
+            this.physics.velocity.x = -7;
             this.isLookingLeft = true;
         }else if(this.engine.input.isPressed("ArrowRight") || this.engine.input.isPressed("KeyD")){
-            this.physics.velocity.x = 5;
+            this.physics.velocity.x = 7;
             this.isLookingLeft = false;
         }else{
             this.physics.velocity.x = 0;
