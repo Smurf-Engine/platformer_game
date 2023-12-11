@@ -26,6 +26,18 @@ export default class AssetManager{
                     grassMid : "/environment/spring/grass_mid.png",
                     grassRight : "/environment/spring/grass_right.png",
                 },
+                autumn : {
+                    grass : "/environment/autumn/grass.png",
+                    grassLeft : "/environment/autumn/grass_left.png",
+                    grassMid : "/environment/autumn/grass_mid.png",
+                    grassRight : "/environment/autumn/grass_right.png",
+                },
+                winter: {
+                    grass : "/environment/winter/grass.png",
+                    grassLeft : "/environment/winter/grass_left.png",
+                    grassMid : "/environment/winter/grass_mid.png",
+                    grassRight : "/environment/winter/grass_right.png",
+                },
                 dirt : {
                     dirtLeft : "/environment/spring/dirt_left.png",
                     dirtMid : "/environment/spring/dirt_mid.png",

@@ -2,6 +2,7 @@ import { BoxCollider, GameObject, SpriteRenderer, SpriteSheetAnimator, Vector2 }
 import AssetManager from "../../../assets/asset_manager";
 import { engine } from "../../../setup";
 import { MovingPlatform } from "./components/moving_platform";
+import { EnvironmentSwitcher, GrassType } from "./components/environment_switcher";
 
 export type Type<T> = { new(...args: any[]): T; };
 
@@ -15,22 +16,29 @@ export function grassBlockBuilder(position: Vector2, columnCount: number, extend
 
         newBlock.transform.position = new Vector2(position.x + (i * 100), position.y);
         newBlock.transform.size = new Vector2(100, 100);
+        newBlock.transform.zIndex = 10;
 
         let spriteSheetRenderer = newBlock.addComponent(SpriteRenderer);
         let sprite = AssetManager.getSprites.environment.spring.grass;
+        let grassType = GrassType.Normal;
         if (columnCount !== 1) {
             if (i == 0) {
                 sprite = AssetManager.getSprites.environment.spring.grassLeft;
+                grassType = GrassType.Left;
             } else if (i == columnCount - 1) {
                 sprite = AssetManager.getSprites.environment.spring.grassRight;
+                grassType = GrassType.Right;
             }
             else {
                 sprite = AssetManager.getSprites.environment.spring.grassMid;
+                grassType = GrassType.Mid;
             }
         }
         spriteSheetRenderer.constructSpriteFromSource(sprite);
 
-        newBlock.addComponent(BoxCollider);
+        let collider = newBlock.addComponent(BoxCollider);
+        collider.drawBounds = true;
+        newBlock.addComponent(EnvironmentSwitcher).grassType = grassType;
         if (movingPlatformEndPosition) {
             let x = movingPlatformEndPosition.x;
                 x += (columnCount) * 100;
@@ -46,6 +54,8 @@ export function grassBlockBuilder(position: Vector2, columnCount: number, extend
                     name: "Dirt",
                     engine,
                 });
+
+                dirtBlock.transform.zIndex = 10;
 
                 dirtBlock.transform.position = new Vector2(position.x + (i * 100), position.y + (100 * row));
                 dirtBlock.transform.size = new Vector2(100, 100);
@@ -77,7 +87,7 @@ export function waterBuilder(position: Vector2, size: Vector2) {
         name: "Water",
         engine
     });
-    water.transform.zIndex = 1;
+    water.transform.zIndex = 10;
 
     water.transform.size = size;
     water.transform.position = position;
