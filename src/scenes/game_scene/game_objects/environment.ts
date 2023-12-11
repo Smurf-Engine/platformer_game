@@ -1,10 +1,11 @@
 import { BoxCollider, Component, GameObject, SpriteRenderer, SpriteSheetAnimator, Vector2 } from "smurf-engine";
 import AssetManager from "../../../assets/asset_manager";
 import { engine } from "../../../setup";
+import { MovingPlatform } from "./components/moving_platform";
 
 export type Type<T> = { new(...args: any[]): T; };
 
-export function grassBlockBuilder(position: Vector2, columnCount: number, extendYTillBottom = false, component?: Type<Component>) {
+export function grassBlockBuilder(position: Vector2, columnCount: number, extendYTillBottom = false, movingPlatformEndPosition?: Vector2) {
     let blocks = [];
     for (let i = 0; i < columnCount; i++) {
         let newBlock = new GameObject({
@@ -30,8 +31,10 @@ export function grassBlockBuilder(position: Vector2, columnCount: number, extend
         spriteSheetRenderer.constructSpriteFromSource(sprite);
 
         newBlock.addComponent(BoxCollider);
-        if (component) {
-            newBlock.addComponent(component);
+        if (movingPlatformEndPosition) {
+            let x = movingPlatformEndPosition.x;
+                x += (columnCount) * 100;
+            newBlock.addComponent(MovingPlatform).setEndPosition(new Vector2(x, movingPlatformEndPosition.y));
         }
         blocks.push(newBlock);
     }
@@ -95,7 +98,7 @@ let environment: GameObject[] = [
     ...grassBlockBuilder(new Vector2(1800, bottomCorner - 200), 2),
     ...grassBlockBuilder(new Vector2(2100, bottomCorner - 300), 4, true),
     waterBuilder(new Vector2(2500, bottomCorner - 100), new Vector2(400, 200)),
-    ...grassBlockBuilder(new Vector2(2700, bottomCorner - 220), 2),
+    ...grassBlockBuilder(new Vector2(2700, bottomCorner - 220), 1, false, new Vector2(3300, bottomCorner - 220)),
     waterBuilder(new Vector2(2900, bottomCorner - 100), new Vector2(400, 200)),
     waterBuilder(new Vector2(3300, bottomCorner - 100), new Vector2(400, 200)),
     ...grassBlockBuilder(new Vector2(3700, bottomCorner - 300), 4, true),
