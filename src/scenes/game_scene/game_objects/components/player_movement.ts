@@ -1,4 +1,4 @@
-import { Component, Physics2D, SpriteRenderer, SpriteSheetAnimator } from "smurf-engine";
+import { Component, GameObject, Physics2D, SpriteRenderer, SpriteSheetAnimator } from "smurf-engine";
 import AssetManager from "../../../../assets/asset_manager";
 
 export default class PlayerMovement extends Component{
@@ -6,6 +6,7 @@ export default class PlayerMovement extends Component{
     spriteRenderer! : SpriteRenderer;
     spriteSheetAnimator! : SpriteSheetAnimator;
     isLookingLeft = false;
+    isMidAir = false;
     
     start(){
         this.physics = this.gameObject.getComponent(Physics2D)!;
@@ -15,8 +16,9 @@ export default class PlayerMovement extends Component{
 
     update(): void {
         // vertical movement
-        if(this.engine.input.isPressed("ArrowUp") || this.engine.input.isPressed("Space")){
+        if((this.engine.input.isPressed("ArrowUp") || this.engine.input.isPressed("Space")) && !this.isMidAir){
             this.physics.velocity.y = -7;
+            this.isMidAir = true;
         }
         // horizontal movement
         if(this.engine.input.isPressed("ArrowLeft") || this.engine.input.isPressed("KeyA")){
@@ -39,6 +41,12 @@ export default class PlayerMovement extends Component{
         }else if(!this.isLookingLeft && this.spriteSheetAnimator.sprites[0].endsWith("_left.png")){
             this.spriteRenderer.constructSpriteFromSource(AssetManager.getSheets.player.idle[0]);
             this.spriteSheetAnimator.sprites = AssetManager.getSheets.player.idle;
+        }
+    }
+
+    onCollisionEnter(other: GameObject): void {
+        if(other.name === "Grass"){
+            this.isMidAir = false;
         }
     }
 }
