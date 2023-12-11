@@ -9,7 +9,7 @@ export class MovingPlatform extends Component{
     startPosition = this.gameObject.transform.position;
     endPosition : Vector2 = new Vector2(0, 0);
     direction = MovingPlatformDirection.Right;
-    speed = .5;
+    speed = .75;
     touchingGameObject?: GameObject;
 
     start(): void {

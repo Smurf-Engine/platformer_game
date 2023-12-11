@@ -13,6 +13,9 @@ export function grassBlockBuilder(position: Vector2, columnCount: number, extend
             name: "Grass",
             engine,
         });
+        if(!movingPlatformEndPosition){
+            newBlock.isStatic = true;
+        }
 
         newBlock.transform.position = new Vector2(position.x + (i * 100), position.y);
         newBlock.transform.size = new Vector2(100, 100);
@@ -36,12 +39,11 @@ export function grassBlockBuilder(position: Vector2, columnCount: number, extend
         }
         spriteSheetRenderer.constructSpriteFromSource(sprite);
 
-        let collider = newBlock.addComponent(BoxCollider);
-        collider.drawBounds = true;
+        newBlock.addComponent(BoxCollider);
         newBlock.addComponent(EnvironmentSwitcher).grassType = grassType;
         if (movingPlatformEndPosition) {
             let x = movingPlatformEndPosition.x;
-                x += (columnCount) * 100;
+            x += (columnCount) * 100;
             newBlock.addComponent(MovingPlatform).setEndPosition(new Vector2(x, movingPlatformEndPosition.y));
         }
         blocks.push(newBlock);
@@ -54,6 +56,7 @@ export function grassBlockBuilder(position: Vector2, columnCount: number, extend
                     name: "Dirt",
                     engine,
                 });
+                dirtBlock.isStatic = true;
 
                 dirtBlock.transform.zIndex = 10;
 
@@ -87,6 +90,7 @@ export function waterBuilder(position: Vector2, size: Vector2) {
         name: "Water",
         engine
     });
+    water.isStatic = true;
     water.transform.zIndex = 10;
 
     water.transform.size = size;
@@ -99,6 +103,28 @@ export function waterBuilder(position: Vector2, size: Vector2) {
     return water;
 }
 
+export function coinBuilder(position: Vector2) {
+    const coin = new GameObject({
+        name: "Coin",
+        engine
+    });
+    coin.isStatic = true;
+    coin.transform.zIndex = 10;
+
+    coin.transform.size = new Vector2(25, 25);
+    coin.transform.position = position;
+
+    let spr = coin.addComponent<SpriteRenderer>(SpriteRenderer);
+    spr.constructSpriteFromSource(AssetManager.getSheets.coin[0]);
+    spr.useNaturalSize = true;
+    spr.scale = new Vector2(.1, .1);
+    let animator = coin.addComponent(SpriteSheetAnimator);
+    animator.sprites = AssetManager.getSheets.coin;
+    animator.framesPerSecond = 5;
+    coin.addComponent(BoxCollider);
+    return coin;
+}
+
 let bottomCorner = engine.canvas.height - 100;
 
 let environment: GameObject[] = [
@@ -106,12 +132,16 @@ let environment: GameObject[] = [
     ...grassBlockBuilder(new Vector2(500, bottomCorner - 100), 8, true),
     ...grassBlockBuilder(new Vector2(1300, bottomCorner), 3),
     ...grassBlockBuilder(new Vector2(1800, bottomCorner - 200), 2),
+    coinBuilder(new Vector2(1850, bottomCorner - 250)),
+    coinBuilder(new Vector2(1900, bottomCorner - 250)),
+    coinBuilder(new Vector2(1950, bottomCorner - 250)),
     ...grassBlockBuilder(new Vector2(2100, bottomCorner - 300), 4, true),
-    waterBuilder(new Vector2(2500, bottomCorner - 100), new Vector2(400, 200)),
-    ...grassBlockBuilder(new Vector2(2700, bottomCorner - 220), 1, false, new Vector2(3300, bottomCorner - 220)),
-    waterBuilder(new Vector2(2900, bottomCorner - 100), new Vector2(400, 200)),
-    waterBuilder(new Vector2(3300, bottomCorner - 100), new Vector2(400, 200)),
-    ...grassBlockBuilder(new Vector2(3700, bottomCorner - 300), 4, true),
+    waterBuilder(new Vector2(2500, bottomCorner - 100), new Vector2(1600, 200)),
+    ...grassBlockBuilder(new Vector2(2700, bottomCorner - 220), 1, false, new Vector2(3700, bottomCorner - 220)),
+    ...grassBlockBuilder(new Vector2(4100, bottomCorner - 300), 6, true),
+    coinBuilder(new Vector2(4200, bottomCorner - 350)),
+    coinBuilder(new Vector2(4250, bottomCorner - 350)),
+    ...grassBlockBuilder(new Vector2(4700, bottomCorner - 100), 5, true),
 ];
 
 export default environment;

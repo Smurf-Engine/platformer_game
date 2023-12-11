@@ -3,6 +3,7 @@ import { engine } from "../../../setup";
 import AssetManager from "../../../assets/asset_manager";
 import PlayerMovement from "./components/player_movement";
 import { PlayerCameraFollower } from "./components/player_camera_follower";
+import { PlayerOcclusion } from "./components/player_occlusion";
 
 export const Player = new GameObject({
     name: 'Player',
@@ -22,3 +23,4 @@ animator.framesPerSecond = 5;
 Player.addComponent(Physics2D);
 Player.addComponent(PlayerMovement);
 Player.addComponent(PlayerCameraFollower);
+Player.addComponent(PlayerOcclusion);
