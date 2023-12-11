@@ -2,13 +2,14 @@ import { BoxCollider, GameObject, Physics2D, SpriteRenderer, SpriteSheetAnimator
 import { engine } from "../../../setup";
 import AssetManager from "../../../assets/asset_manager";
 import PlayerMovement from "./components/player_movement";
+import { PlayerCameraFollower } from "./components/player_camera_follower";
 
 export const Player = new GameObject({
     name: 'Player',
     engine,
 });
 
-Player.transform.position = new Vector2(100, 100);
+Player.transform.position = new Vector2(300, 300);
 Player.transform.size = new Vector2(100, 100);
 
 Player.addComponent(SpriteRenderer).constructSpriteFromSource(AssetManager.getSheets.player.idle[0]);
@@ -18,5 +19,6 @@ animator.sprites = AssetManager.getSheets.player.idle;
 animator.pauseDurationInSeconds = 2;
 animator.framesPerSecond = 5;
 
-Player.addComponent(Physics2D);
+Player.addComponent(Physics2D).gravity = 0;
 Player.addComponent(PlayerMovement);
+Player.addComponent(PlayerCameraFollower);
