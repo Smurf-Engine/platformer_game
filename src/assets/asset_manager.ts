@@ -12,6 +12,14 @@ export default class AssetManager{
             environment : {
                 spring : {
                     grass : "/environment/spring/grass.png",
+                    grassLeft : "/environment/spring/grass_left.png",
+                    grassMid : "/environment/spring/grass_mid.png",
+                    grassRight : "/environment/spring/grass_right.png",
+                },
+                dirt : {
+                    dirtLeft : "/environment/spring/dirt_left.png",
+                    dirtMid : "/environment/spring/dirt_mid.png",
+                    dirtRight : "/environment/spring/dirt_right.png",
                 },
             }
         };
