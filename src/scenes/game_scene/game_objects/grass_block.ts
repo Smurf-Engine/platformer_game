@@ -74,6 +74,7 @@ let ground: GameObject[] = [
     ...grassBlockBuilder(new Vector2(0, bottomCorner - 300), 5, true),
     ...grassBlockBuilder(new Vector2(500, bottomCorner - 100), 8, true),
     ...grassBlockBuilder(new Vector2(1300, bottomCorner), 3),
+    ...grassBlockBuilder(new Vector2(1800, bottomCorner - 200), 2),
 ];
 
 export default ground;

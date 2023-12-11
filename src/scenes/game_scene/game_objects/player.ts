@@ -13,7 +13,7 @@ Player.transform.position = new Vector2(300, 300);
 Player.transform.size = new Vector2(100, 100);
 
 Player.addComponent(SpriteRenderer).constructSpriteFromSource(AssetManager.getSheets.player.idle[0]);
-Player.addComponent(BoxCollider).drawBounds = true;
+Player.addComponent(BoxCollider);
 let animator = Player.addComponent(SpriteSheetAnimator);
 animator.sprites = AssetManager.getSheets.player.idle;
 animator.pauseDurationInSeconds = 2;
