@@ -17,8 +17,8 @@ export class PlayerCameraFollower extends Component{
     update(): void {
         this.relocateBox();
 
-        this.cx.fillStyle = "rgba(255, 0, 0, 0.5)";
-        this.cx.fillRect(this.box.position.x, this.box.position.y, this.box.width, this.box.height);
+        // this.cx.fillStyle = "rgba(255, 0, 0, 0.5)";
+        // this.cx.fillRect(this.box.position.x, this.box.position.y, this.box.width, this.box.height);
 
         if(this.shouldPanCameraLeft()){
             this.cx.translate(-this.physics.velocity.x, 0);

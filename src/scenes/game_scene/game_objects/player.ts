@@ -19,6 +19,6 @@ animator.sprites = AssetManager.getSheets.player.idle;
 animator.pauseDurationInSeconds = 2;
 animator.framesPerSecond = 5;
 
-Player.addComponent(Physics2D).gravity = 0;
+Player.addComponent(Physics2D);
 Player.addComponent(PlayerMovement);
 Player.addComponent(PlayerCameraFollower);
