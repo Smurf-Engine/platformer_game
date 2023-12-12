@@ -15,6 +15,11 @@ for(let i = 1; i <= 16; i++){
     coinAnimationSheets.push(`/coin/image ${i}.png`);
 }
 
+const chestAnimationSheets : string[] = [];
+for (let i = 1; i <= 8; i++){
+    chestAnimationSheets.push(`/chest/${i}.png`);
+}
+
 export default class AssetManager{
     static get getSprites(){
         return {
@@ -60,6 +65,7 @@ export default class AssetManager{
             },
             water : waterAnimationSheets,
             coin : coinAnimationSheets,
+            chest : chestAnimationSheets,
         };
     }
 }

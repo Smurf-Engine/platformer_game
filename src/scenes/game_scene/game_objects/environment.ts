@@ -3,6 +3,7 @@ import AssetManager from "../../../assets/asset_manager";
 import { engine } from "../../../setup";
 import { MovingPlatform } from "./components/moving_platform";
 import { EnvironmentSwitcher, GrassType } from "./components/environment_switcher";
+import { ChestManager } from "./components/chest_manager";
 
 export type Type<T> = { new(...args: any[]): T; };
 
@@ -122,8 +123,29 @@ export function coinBuilder(position: Vector2) {
     let animator = coin.addComponent(SpriteSheetAnimator);
     animator.sprites = AssetManager.getSheets.coin;
     animator.framesPerSecond = 5;
-    coin.addComponent(BoxCollider);
     return coin;
+}
+
+export function chestBuilder(position: Vector2) {
+    const chest = new GameObject({
+        name: "Chest",
+        engine
+    });
+    chest.isStatic = true;
+    chest.transform.zIndex = 10;
+
+    chest.transform.size = new Vector2(100, 100);
+    position.subtract(new Vector2(0, 5));
+    chest.transform.position = position;
+
+    let spr = chest.addComponent<SpriteRenderer>(SpriteRenderer);
+    spr.constructSpriteFromSource(AssetManager.getSheets.chest[0]);
+    let animator = chest.addComponent(SpriteSheetAnimator);
+    animator.sprites = AssetManager.getSheets.chest;
+    animator.framesPerSecond = 13;
+    chest.addComponent(BoxCollider);
+    chest.addComponent(ChestManager);
+    return chest;
 }
 
 let bottomCorner = engine.canvas.height - 100;
@@ -132,6 +154,9 @@ let environment: GameObject[] = [
     ...grassBlockBuilder(new Vector2(0, bottomCorner - 300), 5, true),
     ...grassBlockBuilder(new Vector2(500, bottomCorner - 100), 8, true),
     ...grassBlockBuilder(new Vector2(1300, bottomCorner), 3),
+    coinBuilder(new Vector2(1350, bottomCorner - 75)),
+    coinBuilder(new Vector2(1450, bottomCorner - 75)),
+    coinBuilder(new Vector2(1550, bottomCorner - 75)),
     ...grassBlockBuilder(new Vector2(1700, bottomCorner - 100), 1),
     ...grassBlockBuilder(new Vector2(1800, bottomCorner - 200), 2),
     ...grassBlockBuilder(new Vector2(2100, bottomCorner - 300), 4, true),
@@ -140,6 +165,7 @@ let environment: GameObject[] = [
     ...grassBlockBuilder(new Vector2(4100, bottomCorner - 300), 6, true),
     ...grassBlockBuilder(new Vector2(4700, bottomCorner - 100), 5, true),
     ...grassBlockBuilder(new Vector2(5200, bottomCorner), 10, true),
+    chestBuilder(new Vector2(6000, bottomCorner - 100)),
     ...grassBlockBuilder(new Vector2(6200, 200), 10, true),
 ];
 
