@@ -38,6 +38,8 @@ const DETAILS : GameObject[] = [
     detailBuilder(new Vector2(generateRandomPositionBetween(50, 400), bottomCorner - 300)),
     detailBuilder(new Vector2(generateRandomPositionBetween(500, 800), bottomCorner - 100)),
     detailBuilder(new Vector2(generateRandomPositionBetween(850, 1200), bottomCorner - 100)),
-    detailBuilder(new Vector2(generateRandomPositionBetween(1800, 2000), bottomCorner - 200)),
+    detailBuilder(new Vector2(generateRandomPositionBetween(1800, 1900), bottomCorner - 200)),
+    detailBuilder(new Vector2(generateRandomPositionBetween(4100, 4600), bottomCorner - 300)),
+    detailBuilder(new Vector2(generateRandomPositionBetween(4700, 5100), bottomCorner - 100)),
 ];
 export default DETAILS;
