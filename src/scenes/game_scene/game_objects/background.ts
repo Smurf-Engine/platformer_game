@@ -7,7 +7,6 @@ const backgroundBuilder = (idx = 0) => {
         name: "Background",
         engine,
     });
-    background.isStatic = true;
 
     background.transform.position = new Vector2(0 + (engine.canvas.width * idx), -100);
     background.transform.size = new Vector2(engine.canvas.width, engine.canvas.height + 101);

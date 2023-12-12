@@ -91,7 +91,7 @@ export function waterBuilder(position: Vector2, size: Vector2) {
         name: "Water",
         engine
     });
-    water.isStatic = true;
+    water.isStatic = false;
     water.transform.zIndex = 10;
 
     water.transform.size = size;

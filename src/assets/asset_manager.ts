@@ -44,6 +44,11 @@ export default class AssetManager{
                     dirtMid : "/environment/spring/dirt_mid.png",
                     dirtRight : "/environment/spring/dirt_right.png",
                 },
+                details : {
+                    tree : "/detail/tree.png",
+                    tree_2 : "/detail/tree 2.png",
+                    flower : "/detail/flower.png",
+                },
             }
         };
     }
