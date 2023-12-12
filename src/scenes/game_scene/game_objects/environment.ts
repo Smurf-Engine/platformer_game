@@ -50,7 +50,8 @@ export function grassBlockBuilder(position: Vector2, columnCount: number, extend
     }
 
     if (extendYTillBottom) {
-        for (let row = 1; row < 10; row++) {
+        let maxRowsTillBottom = Math.floor((engine.canvas.height - position.y) / 100);
+        for (let row = 1; row <= maxRowsTillBottom; row++) {
             for (let i = 0; i < columnCount; i++) {
                 let dirtBlock = new GameObject({
                     name: "Dirt",
@@ -131,17 +132,15 @@ let environment: GameObject[] = [
     ...grassBlockBuilder(new Vector2(0, bottomCorner - 300), 5, true),
     ...grassBlockBuilder(new Vector2(500, bottomCorner - 100), 8, true),
     ...grassBlockBuilder(new Vector2(1300, bottomCorner), 3),
+    ...grassBlockBuilder(new Vector2(1700, bottomCorner - 100), 1),
     ...grassBlockBuilder(new Vector2(1800, bottomCorner - 200), 2),
-    coinBuilder(new Vector2(1850, bottomCorner - 250)),
-    coinBuilder(new Vector2(1900, bottomCorner - 250)),
-    coinBuilder(new Vector2(1950, bottomCorner - 250)),
     ...grassBlockBuilder(new Vector2(2100, bottomCorner - 300), 4, true),
     waterBuilder(new Vector2(2500, bottomCorner - 100), new Vector2(1600, 200)),
     ...grassBlockBuilder(new Vector2(2700, bottomCorner - 220), 1, false, new Vector2(3700, bottomCorner - 220)),
     ...grassBlockBuilder(new Vector2(4100, bottomCorner - 300), 6, true),
-    coinBuilder(new Vector2(4200, bottomCorner - 350)),
-    coinBuilder(new Vector2(4250, bottomCorner - 350)),
     ...grassBlockBuilder(new Vector2(4700, bottomCorner - 100), 5, true),
+    ...grassBlockBuilder(new Vector2(5200, bottomCorner), 10, true),
+    ...grassBlockBuilder(new Vector2(6200, 200), 10, true),
 ];
 
 export default environment;

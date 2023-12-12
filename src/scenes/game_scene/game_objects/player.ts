@@ -1,4 +1,4 @@
-import { BoxCollider, GameObject, Physics2D, SpriteRenderer, SpriteSheetAnimator, Vector2 } from "smurf-engine";
+import { BoxCollider, GameObject, Physics2D, SoundSystem, SpriteRenderer, SpriteSheetAnimator, Vector2 } from "smurf-engine";
 import { engine } from "../../../setup";
 import AssetManager from "../../../assets/asset_manager";
 import PlayerMovement from "./components/player_movement";
@@ -24,3 +24,8 @@ Player.addComponent(Physics2D);
 Player.addComponent(PlayerMovement);
 Player.addComponent(PlayerCameraFollower);
 Player.addComponent(PlayerOcclusion);
+// let sound = Player.addComponent(SoundSystem);
+// sound.loop = false;
+// sound.autoplay = false;
+// sound.volume = 0.5;
+// sound.source = AssetManager.getSprites.jumpSound;

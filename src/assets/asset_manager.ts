@@ -18,6 +18,7 @@ for(let i = 1; i <= 16; i++){
 export default class AssetManager{
     static get getSprites(){
         return {
+            jumpSound : "/jump.mp3",
             background : "/background/background.png",
             environment : {
                 spring : {
