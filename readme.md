@@ -4,6 +4,8 @@ This is a simple platform game made with smurf engine to demonstrate the capabil
 
 Below is a recorded video of the game:
 
+https://github.com/user-attachments/assets/7cbbf44f-5ce5-452d-bf27-e13da89aede0
+
 ## How to run the game
 
 1. Clone the repository
