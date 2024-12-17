@@ -18,7 +18,7 @@ export default class PlayerMovement extends Component{
 
     update(): void {
         // vertical movement
-        if((this.engine.input.isPressed("ArrowUp") || this.engine.input.isPressed("Space")) ){
+        if((this.engine.input.isPressed("ArrowUp") || this.engine.input.isPressed("Space")) && !this.isMidAir){
             this.physics.velocity.y = -7;
             // this.sound.play();
             this.isMidAir = true;
